@@ -49,29 +49,41 @@ export default class EventDetailOverlay extends PureComponent {
         let displayDateTime = `${displayDate} ${startHourDisplay} - ${endHourDisplay}`;
 
         
-        // TODO: Add appropriate ARIA tags to overlay/dialog
         return (
-            <div ref={node => this.node = node}>
-            <section className="event-detail-overlay">
-                <div className="event-detail-overlay__container">
-                    <button
-                        className="event-detail-overlay__close"
-                        title="Close detail view"
-                        onClick={onClose}
-                    />
-                    <div>
-                        {displayDateTime}
-                        <span
-                            className={`event-detail-overlay__color ${color}`}
-                            title={`Event label color: ${color}`}
+            <div 
+                role="dialog" 
+                aria-labelledby="dialog1Title" 
+                aria-describedby="dialog1Desc"
+                ref={node => this.node = node}>
+                <section className="event-detail-overlay">
+                    <div className="event-detail-overlay__container">
+                        <button
+                            className="event-detail-overlay__close"
+                            title="Close detail view"
+                            onClick={onClose}
                         />
+                        <div title="Display date">
+                            {displayDateTime}
+                            <span
+                                className={`event-detail-overlay__color ${color}`}
+                                title={`Event label color: ${color}`}
+                            />
+                        </div>
+                        <h1 
+                            className="event-detail-overlay__title"
+                            title="Display event title"
+                            id="dialog1Title"
+                        >
+                            {title}
+                        </h1>
+                        <p 
+                            title="Display description:"
+                            id="dialog1Desc"
+                        }>
+                            {description}
+                        </p>
                     </div>
-                    <h1 className="event-detail-overlay__title">
-                        {title}
-                    </h1>
-                    <p>{description}</p>
-                </div>
-            </section>
+                </section>
             </div>
         );
     }
