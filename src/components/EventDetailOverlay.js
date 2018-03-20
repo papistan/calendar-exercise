@@ -79,7 +79,7 @@ export default class EventDetailOverlay extends PureComponent {
                         <p 
                             title="Display description:"
                             id="dialog1Desc"
-                        }>
+                        >
                             {description}
                         </p>
                     </div>
