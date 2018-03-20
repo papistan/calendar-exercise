@@ -10,6 +10,22 @@ export default class EventDetailOverlay extends PureComponent {
         onClose: PropTypes.func.isRequired
     }
 
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleClick, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClick, false);
+    }
+
+    handleClick = (e) => {
+        if(this.node.contains(e.target)) {
+            return
+        }
+        this.props.onClose();
+    }
+    
+
     render() {
         let {event, onClose} = this.props;
         let {title, description, start, color, hours} = event;
@@ -24,11 +40,12 @@ export default class EventDetailOverlay extends PureComponent {
 
         let displayDateTime = `${displayDate} ${startHourDisplay} - ${endHourDisplay}`;
 
-        // TODO: The event label color should match the event color
+        
         // TODO: Add appropriate ARIA tags to overlay/dialog
         // TODO: Support clicking outside of the overlay to close it
         // TODO: Support clicking ESC to close it
         return (
+            <div ref={node => this.node = node}>
             <section className="event-detail-overlay">
                 <div className="event-detail-overlay__container">
                     <button
@@ -49,6 +66,7 @@ export default class EventDetailOverlay extends PureComponent {
                     <p>{description}</p>
                 </div>
             </section>
+            </div>
         );
     }
 }

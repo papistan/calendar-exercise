@@ -46,14 +46,14 @@ export default class Page extends PureComponent {
     }
 
     _handlePrev() {
-        // TODO: Update this.state.day to go back 1 day so previous button works
+        
         let prevDay = getAdjacentDay(this.state.day, 'yesterday');
 
         this.setState({day: prevDay});
     }
 
     _handleNext() {
-        // TODO: Update this.state.day to go forward 1 day so next button works
+       
         let nextDay = getAdjacentDay(this.state.day, 'tomorrow');
 
         this.setState({day: nextDay});
