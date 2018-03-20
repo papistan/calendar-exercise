@@ -1,8 +1,3 @@
-const _HOUR_DISPLAY_MAP = [
-    '12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM',
-    '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM',
-]
-
 /**
  * Given a list of events and a date, filter the events down to those that
  * fall on the same day as the date
@@ -53,9 +48,23 @@ export const getDisplayDate = (timestamp) => {
  * @param {number} hour - The hour
  * @returns {string}
  */
-// TODO: Implement using a more programmatic approach instead of map
-export const getDisplayHour = (hour) => _HOUR_DISPLAY_MAP[hour]
 
+export const getDisplayHour = (hour) => {
+    let ampm = hour > 11 ? 'PM' : 'AM';
+    let hourNumber = (_hour) => {
+        if (_hour == 0 || _hour == 12 ) {
+           return 12
+        } else if ( _hour < 12 ) {
+           return _hour;
+        } else {
+           return _hour - 12;
+        }
+    };
+
+    return (hourNumber(hour) + ampm).toString();
+}
+
+ 
 /**
  * Given a list of events, returns the event object whose id matches the specified eventId
  * @param {array} events - List of event objects
