@@ -1,4 +1,5 @@
 
+
 .event-detail-overlay {
     position: fixed;
     height: 100%;
@@ -66,10 +67,16 @@
     width: 1rem;
     vertical-align: sub;
     margin-left: 0.5rem;
-
-    /*
-     * TODO: Figure out how label color can match the event color instead of
-     * always being black
-     */
-    background-color: #000;
+}
+.sky {
+    background-color: #d1e8f0;
+}
+.canary {
+    background-color: #fcf69a;
+}
+.rose {
+    background-color: #fcbbd2;
+}
+.shamrock {
+    background-color: #009e60;
 }
