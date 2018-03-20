@@ -11,9 +11,15 @@ const _HOUR_DISPLAY_MAP = [
  * @returns {array}
  */
 export const filterEventsByDay = (events, timestamp) => {
-    // TODO: Implement day filtering!
 
-    return events;
+    let selectedDate = new Date(timestamp);
+    let selectedDateStart = selectedDate.setHours(0,0,0,0);
+    let selectedDateEnd = selectedDate.setHours(23,59,59,999);
+
+    let todaysEvents = events.filter( event => 
+        event.start > selectedDateStart && event.start < selectedDateEnd 
+    );
+    return todaysEvents;
 }
 
 /**
