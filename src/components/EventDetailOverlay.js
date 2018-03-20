@@ -50,7 +50,7 @@ export default class EventDetailOverlay extends PureComponent {
 
         
         return (
-            <div 
+            <div
                 role="dialog" 
                 aria-labelledby="dialog1Title" 
                 aria-describedby="dialog1Desc"

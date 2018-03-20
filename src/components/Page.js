@@ -24,7 +24,8 @@ const DayNavigator = ({dateDisplay, onPrev, onNext}) => {
     );
 };
 
-export default class Page extends PureComponent {
+
+class Page extends PureComponent {
     state = {
         // unfiltered list of events
         events: DATA_SET,
@@ -36,6 +37,16 @@ export default class Page extends PureComponent {
         // (mainly to trigger event detail overlay)
         selectedEventId: undefined
     }
+    
+    componentDidMount(props){
+        let enteredTimestamp = this.props.match.params.timedate;
+        if(enteredTimestamp) {
+            let timeStampToNum = Number(enteredTimestamp)
+            this.setState({
+                day: timeStampToNum
+            })
+        }
+    }
 
     _handleSelectEvent(selectedEventId) {
         this.setState({selectedEventId});
@@ -46,16 +57,16 @@ export default class Page extends PureComponent {
     }
 
     _handlePrev() {
-        
         let prevDay = getAdjacentDay(this.state.day, 'yesterday');
 
+        this.props.history.push(`/${prevDay}`);
         this.setState({day: prevDay});
     }
 
     _handleNext() {
-       
         let nextDay = getAdjacentDay(this.state.day, 'tomorrow');
 
+        this.props.history.push(`/${nextDay}`);
         this.setState({day: nextDay});
     }
 
@@ -91,3 +102,5 @@ export default class Page extends PureComponent {
         );
     }
 }
+
+export default Page;
