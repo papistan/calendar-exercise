@@ -12,10 +12,18 @@ export default class EventDetailOverlay extends PureComponent {
 
     componentWillMount() {
         document.addEventListener('mousedown', this.handleClick, false);
+        document.addEventListener('keyup', this.handleKeyUp);
     }
 
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClick, false);
+        document.removeEventListener('keyup', this.handleKeyUp);
+    }
+
+    handleKeyUp = (e) => {
+        if(e.keyCode === 27) {
+            this.props.onClose();
+        }
     }
 
     handleClick = (e) => {
@@ -42,8 +50,6 @@ export default class EventDetailOverlay extends PureComponent {
 
         
         // TODO: Add appropriate ARIA tags to overlay/dialog
-        // TODO: Support clicking outside of the overlay to close it
-        // TODO: Support clicking ESC to close it
         return (
             <div ref={node => this.node = node}>
             <section className="event-detail-overlay">
