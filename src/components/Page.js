@@ -64,6 +64,7 @@ export default class Page extends PureComponent {
         let filteredEvents = filterEventsByDay(events, day);
         let selectedEvent = getEventFromEvents(events, selectedEventId);
         let eventDetailOverlay;
+        let noScroll = selectedEventId ? 'noScroll' : '';
 
         if (selectedEvent) {
             eventDetailOverlay = (
@@ -75,7 +76,7 @@ export default class Page extends PureComponent {
         }
 
         return (
-            <div className="page">
+            <div className={`page ${noScroll}`}>
                 <header className="page__header">
                     <h1 className="page__title">Daily Agenda</h1>
                 </header>

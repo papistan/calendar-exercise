@@ -1,12 +1,15 @@
-/*
- 
- * TODO: On narrow screens the background shouldn't scroll when detail overlay is shown
- */
 
 .page {
     margin: 1rem;
-    background: linear-gradient(white, lightgray)
+    background: linear-gradient(white, lightgray);
 }
+
+@media (max-width: 50rem) {
+    .noScroll {
+        position: fixed
+    }
+}
+
 .page__header {
     margin-bottom: 1rem;
 }
