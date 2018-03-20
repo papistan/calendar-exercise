@@ -60,3 +60,12 @@ export const getDisplayHour = (hour) => _HOUR_DISPLAY_MAP[hour]
 export const getEventFromEvents = (events, eventId) => (
     events.find(({id}) => id === eventId)
 );
+
+export const getAdjacentDay = (currentTimestamp, offset) => {
+    let today = new Date(currentTimestamp);
+    let currentDate = today.getDate();
+    let offsetDate = offset === 'tomorrow' ? currentDate + 1 : currentDate - 1;
+    let nextTimestamp = today.setDate(offsetDate);
+
+    return nextTimestamp;
+}
